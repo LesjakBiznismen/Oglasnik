@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35825.156
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Oglasnik", "Oglasnik\Oglasnik.csproj", "{B571ABB3-B2B8-47BA-B31C-D11DE14965B0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassLibraryOglasnik", "ClassLibraryOglasnik\ClassLibraryOglasnik.csproj", "{E275F5AA-F29C-4355-8AC9-3AAF99794286}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B571ABB3-B2B8-47BA-B31C-D11DE14965B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B571ABB3-B2B8-47BA-B31C-D11DE14965B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B571ABB3-B2B8-47BA-B31C-D11DE14965B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B571ABB3-B2B8-47BA-B31C-D11DE14965B0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E275F5AA-F29C-4355-8AC9-3AAF99794286}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E275F5AA-F29C-4355-8AC9-3AAF99794286}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E275F5AA-F29C-4355-8AC9-3AAF99794286}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E275F5AA-F29C-4355-8AC9-3AAF99794286}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {31E46C85-D61F-45F9-94B1-E1FA224E7842}
+	EndGlobalSection
+EndGlobal
