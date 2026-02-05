@@ -6,10 +6,13 @@ using System.Threading.Tasks;
 
 namespace Oglasnik
 {
-    public class Traktor : MotornoVozilo
+    public class Traktor : MotornoVozilo, IPriklopnik
     {
         public double SirinaPriklopa { get; set; }
         public bool ImaZlico { get; set; }
+        public double MaxDolzinaKompozicije { get; set; }
+        public double MaxObremenitevOsi { get; set; }
+        public bool ZracneZavore { get; set; }
         public Traktor(string znamka, string model, int letnik, int moc, double cena, Menjalnik menjalnik, string barva, string tipGoriva, int steviloVrat, double sirina, bool zlica) : base(znamka, model, letnik, moc, cena, barva, menjalnik, tipGoriva, steviloVrat)
         {
             SirinaPriklopa = sirina;

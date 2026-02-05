@@ -57,6 +57,7 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Interface1.cs" />
     <Compile Include="Kombi.cs" />
     <Compile Include="Motor.cs" />
     <Compile Include="MotornoVozilo.cs" />
