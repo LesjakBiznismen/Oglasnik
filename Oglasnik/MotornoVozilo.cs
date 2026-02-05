@@ -11,7 +11,7 @@ namespace Oglasnik
 
     
 
-    public class MotornoVozilo
+    public abstract class MotornoVozilo
     {
         public static int steviloVozil = 0;
 
