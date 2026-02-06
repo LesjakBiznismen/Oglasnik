@@ -110,6 +110,5 @@ namespace Oglasnik
         {
             steviloVozil -= 1;
         }
-
     }
 }

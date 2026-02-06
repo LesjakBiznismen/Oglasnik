@@ -31,9 +31,9 @@ namespace Oglasnik
 
         List<Traktor> traktorji = new List<Traktor>()
             {
-                new Traktor("John Deere", "6155M", 2021, 155, 85000.00, Menjalnik.ročni, "zelena", "Dizel", 2, 2.5, true),
-                new Traktor("New Holland", "T7.210", 2020, 210, 92000.00, Menjalnik.avtomatski, "modra", "Dizel", 2, 3.0, false),
-                new Traktor("Fendt", "724 Vario", 2022, 240, 145000.00, Menjalnik.avtomatski, "zelena", "Dizel", 2, 2.8, true)
+                new Traktor("John Deere", "6155M", 2021, 155, 85000.00, Menjalnik.ročni, "zelena", "Dizel", 2, 2.5, true, 30.0, 1000.0, true),
+                new Traktor("New Holland", "T7.210", 2020, 210, 92000.00, Menjalnik.avtomatski, "modra", "Dizel", 2, 3.0, false, 30.0, 1000.0, false),
+                new Traktor("Fendt", "724 Vario", 2022, 240, 145000.00, Menjalnik.avtomatski, "zelena", "Dizel", 2, 2.8, true, 30.0, 1000.0, true)
             };
 
         List<Kombi> kombiji = new List<Kombi>()
@@ -629,8 +629,8 @@ namespace Oglasnik
 
                 switch (CBMenjalnik.SelectedIndex)
                 {
-                    case 0: traktorji.Add(new Traktor(TBznamka.Text, TBmodel.Text, int.Parse(TBletnik.Text), int.Parse(TBMoč.Text), double.Parse(TBcena.Text), Menjalnik.avtomatski, TBbarva.Text, tipGoriva, int.Parse(TBŠteviloVrat.Text), double.Parse(TBŠirinaPriklopa.Text), žlica)); break;
-                    case 1: traktorji.Add(new Traktor(TBznamka.Text, TBmodel.Text, int.Parse(TBletnik.Text), int.Parse(TBMoč.Text), double.Parse(TBcena.Text), Menjalnik.ročni, TBbarva.Text, tipGoriva, int.Parse(TBŠteviloVrat.Text), double.Parse(TBŠirinaPriklopa.Text), žlica)); break;
+                    case 0: traktorji.Add(new Traktor(TBznamka.Text, TBmodel.Text, int.Parse(TBletnik.Text), int.Parse(TBMoč.Text), double.Parse(TBcena.Text), Menjalnik.avtomatski, TBbarva.Text, tipGoriva, int.Parse(TBŠteviloVrat.Text), double.Parse(TBŠirinaPriklopa.Text), žlica, 30.0, 1000.0, true)); break;
+                    case 1: traktorji.Add(new Traktor(TBznamka.Text, TBmodel.Text, int.Parse(TBletnik.Text), int.Parse(TBMoč.Text), double.Parse(TBcena.Text), Menjalnik.ročni, TBbarva.Text, tipGoriva, int.Parse(TBŠteviloVrat.Text), double.Parse(TBŠirinaPriklopa.Text), žlica, 30.0, 1000.0, true)); break;
                 }
 
                 NaloziOglaseTraktor(traktorji);
