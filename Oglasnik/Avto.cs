@@ -18,5 +18,18 @@ namespace Oglasnik
             Oblika = oblika;
             Čipiran = čipiran;
         }
+
+        public override void PodatkiVozilaDef(out string znamka, out string model, out int letnik, out int moc, out double cena, out string barva, out Menjalnik menjalnik, out string tipGoriva, out int steviloVrat)
+        {
+            znamka = Znamka;
+            model = Model;
+            letnik = Letnik;
+            moc = Moc;
+            cena = Cena;
+            barva = Barva;
+            menjalnik = Menjalnik;
+            tipGoriva = TipGoriva;
+            steviloVrat = SteviloVrat;
+        }
     }
 }
