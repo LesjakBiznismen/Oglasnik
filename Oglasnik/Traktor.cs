@@ -13,10 +13,13 @@ namespace Oglasnik
         public double MaxDolzinaKompozicije { get; set; }
         public double MaxObremenitevOsi { get; set; }
         public bool ZracneZavore { get; set; }
-        public Traktor(string znamka, string model, int letnik, int moc, double cena, Menjalnik menjalnik, string barva, string tipGoriva, int steviloVrat, double sirina, bool zlica) : base(znamka, model, letnik, moc, cena, barva, menjalnik, tipGoriva, steviloVrat)
+        public Traktor(string znamka, string model, int letnik, int moc, double cena, Menjalnik menjalnik, string barva, string tipGoriva, int steviloVrat, double sirina, bool zlica, double maxDolzinaKompozicije, double maxObremenitevOsi, bool zracneZavore) : base(znamka, model, letnik, moc, cena, barva, menjalnik, tipGoriva, steviloVrat)
         {
             SirinaPriklopa = sirina;
             ImaZlico = zlica;
+            MaxDolzinaKompozicije = maxDolzinaKompozicije;
+            MaxObremenitevOsi = maxObremenitevOsi;
+            ZracneZavore = zracneZavore;
         }
     }
 }
