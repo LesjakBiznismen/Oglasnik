@@ -16,13 +16,10 @@ namespace Oglasnik
         public double MaxObremenitevOsi { get; set; }
         public bool ZracneZavore { get; set; }
 
-        public Tovornjak(string znamka, string model, int letnik, int moc, double cena, Menjalnik menjalnik, string barva, string tipGoriva, int steviloVrat, double nosilnost, string priklop, double maxDolzinaKompozicije, double maxObremenitevOsi, bool zracneZavore) : base(znamka, model, letnik, moc, cena, barva, menjalnik, tipGoriva, steviloVrat)
+        public Tovornjak(string znamka, string model, int letnik, int moc, double cena, Menjalnik menjalnik, string barva, string tipGoriva, int steviloVrat, double nosilnost, string priklop) : base(znamka, model, letnik, moc, cena, barva, menjalnik, tipGoriva, steviloVrat)
         {
             NosilnostTone = nosilnost;
             Priklop = priklop;
-            MaxDolzinaKompozicije = maxDolzinaKompozicije;
-            MaxObremenitevOsi = maxObremenitevOsi;
-            ZracneZavore = zracneZavore;
         }
     }
 }
