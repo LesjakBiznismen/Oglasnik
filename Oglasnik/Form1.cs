@@ -50,8 +50,22 @@ namespace Oglasnik
                 new Motor("BMW", "R1250 GS", 2023, 136, 22000.00, Menjalnik.ročni, "bela", "Bencin", 0, 1254)
             };
 
+        public List<MotornoVozilo> vsaVozila = new List<MotornoVozilo>();
+
         
-        
+
+        public void NaloziVsaVozila(List<Avto> avti, List<Tovornjak> tovornjaki, List<Traktor> traktorji, List<Kombi> kombiji, List<Motor> motorji)
+        {
+            vsaVozila.AddRange(avti);
+            vsaVozila.AddRange(tovornjaki);
+            vsaVozila.AddRange(traktorji);
+            vsaVozila.AddRange(kombiji);
+            vsaVozila.AddRange(motorji);
+
+            stoglasov.Text = "Število oglasov: " + vsaVozila.Count.ToString();
+        }
+
+
 
         public Form1()
         {         
@@ -80,6 +94,8 @@ namespace Oglasnik
             ProstorninaCCM.Hide();
             TBprostornina.Hide();
             MotorDataGrid.Hide();
+
+            NaloziVsaVozila(avti, tovornjaki, traktorji, kombiji, motorji);
         }
 
         public void NaloziOglaseAvti(List<Avto> seznamAvtov)
@@ -698,12 +714,35 @@ namespace Oglasnik
             }
         }
 
+        
+        
+
+        public MotornoVozilo this[int index]
+        {
+            get
+            {
+                if (index >= 0 && index < vsaVozila.Count)
+                {
+                    return vsaVozila[index];
+                }
+                else
+                {
+                    MessageBox.Show("Indeks je izven obsega.");
+                    return null;
+                }
+            }
+        }
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
 
         private void label13_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label7_Click(object sender, EventArgs e)
         {
 
         }
