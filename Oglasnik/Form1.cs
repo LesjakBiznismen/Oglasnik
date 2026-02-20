@@ -746,5 +746,11 @@ namespace Oglasnik
         {
 
         }
+
+        private void Podrobnosti_Click(object sender, EventArgs e)
+        {
+            Form2 podrobnosti = new Form2(null);
+            podrobnosti.Show(); 
+        }
     }
 }

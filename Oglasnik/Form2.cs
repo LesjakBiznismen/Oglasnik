@@ -12,9 +12,18 @@ namespace Oglasnik
 {
     public partial class Form2: Form
     {
-        public Form2()
+        private MotornoVozilo vozilo;
+
+        public Form2(MotornoVozilo vozilo)
         {
             InitializeComponent();
+            this.vozilo = vozilo;
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

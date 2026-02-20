@@ -80,6 +80,7 @@
             this.ŠirinaPriklopa = new System.Windows.Forms.Label();
             this.TBŠirinaPriklopa = new System.Windows.Forms.TextBox();
             this.stoglasov = new System.Windows.Forms.Label();
+            this.Podrobnosti = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.AvtoDataGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TovornjakDataGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TraktorDataGrid)).BeginInit();
@@ -553,11 +554,22 @@
             this.stoglasov.Text = "Število Oglasov:";
             this.stoglasov.Click += new System.EventHandler(this.label7_Click);
             // 
+            // Podrobnosti
+            // 
+            this.Podrobnosti.Location = new System.Drawing.Point(86, 631);
+            this.Podrobnosti.Name = "Podrobnosti";
+            this.Podrobnosti.Size = new System.Drawing.Size(135, 48);
+            this.Podrobnosti.TabIndex = 54;
+            this.Podrobnosti.Text = "Podrobnosti";
+            this.Podrobnosti.UseVisualStyleBackColor = true;
+            this.Podrobnosti.Click += new System.EventHandler(this.Podrobnosti_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(919, 754);
+            this.Controls.Add(this.Podrobnosti);
             this.Controls.Add(this.stoglasov);
             this.Controls.Add(this.ImaŽlico);
             this.Controls.Add(this.Žlica);
@@ -676,6 +688,7 @@
         private System.Windows.Forms.Label ŠirinaPriklopa;
         private System.Windows.Forms.TextBox TBŠirinaPriklopa;
         private System.Windows.Forms.Label stoglasov;
+        private System.Windows.Forms.Button Podrobnosti;
     }
 }
 
