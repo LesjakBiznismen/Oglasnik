@@ -1,15 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Oglasnik
 {
     public enum Menjalnik { ročni, avtomatski }
-
-    
 
     public abstract class MotornoVozilo
     {
@@ -111,9 +104,10 @@ namespace Oglasnik
             steviloVozil -= 1;
         }
 
-        // indekser
-        public MotornoVozilo this[int index] { get { return this; } }
-        
+        public virtual string VrniPosebnost()
+        {
+            return "Vrsta vozila: motorno vozilo";
+        }
 
     }
 }

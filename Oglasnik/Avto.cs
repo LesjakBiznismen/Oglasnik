@@ -19,6 +19,9 @@ namespace Oglasnik
             Čipiran = čipiran;
         }
 
-        
+        public override string VrniPosebnost()
+        {
+            return $"Oblika: {Oblika}, čipiran: {Čipiran}";
+        }
     }
 }

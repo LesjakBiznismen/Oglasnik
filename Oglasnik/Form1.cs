@@ -14,6 +14,11 @@ namespace Oglasnik
 {
     public partial class Form1 : Form
     {
+        private delegate bool NakupIzMrezeDelegate(DataGridView mreza);
+        public delegate void PrikazPodrobnostiHandler(object sender, MotornoVozilo vozilo);
+
+        public event PrikazPodrobnostiHandler PrikazPodrobnosti;
+
         Denarnica denarnica = new Denarnica(1000000);
         List<Avto> avti = new List<Avto>()
             {
@@ -50,26 +55,10 @@ namespace Oglasnik
                 new Motor("BMW", "R1250 GS", 2023, 136, 22000.00, Menjalnik.ročni, "bela", "Bencin", 0, 1254)
             };
 
-        public List<MotornoVozilo> vsaVozila = new List<MotornoVozilo>();
-
-        
-
-        public void NaloziVsaVozila(List<Avto> avti, List<Tovornjak> tovornjaki, List<Traktor> traktorji, List<Kombi> kombiji, List<Motor> motorji)
-        {
-            vsaVozila.AddRange(avti);
-            vsaVozila.AddRange(tovornjaki);
-            vsaVozila.AddRange(traktorji);
-            vsaVozila.AddRange(kombiji);
-            vsaVozila.AddRange(motorji);
-
-            stoglasov.Text = "Število oglasov: " + vsaVozila.Count.ToString();
-        }
-
-
-
         public Form1()
         {         
             InitializeComponent();
+            PrikazPodrobnosti += OdpriPodrobnostiVozila;
             NaloziOglaseAvti(avti);
             NaloziOglaseTovornjaki(tovornjaki);
             NaloziOglaseTraktor(traktorji);
@@ -94,8 +83,7 @@ namespace Oglasnik
             ProstorninaCCM.Hide();
             TBprostornina.Hide();
             MotorDataGrid.Hide();
-
-            NaloziVsaVozila(avti, tovornjaki, traktorji, kombiji, motorji);
+            PosodobiSteviloOglasov();
         }
 
         public void NaloziOglaseAvti(List<Avto> seznamAvtov)
@@ -377,16 +365,6 @@ namespace Oglasnik
             return table;
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void RadioAvto_CheckedChanged(object sender, EventArgs e)
         {
             if (RadioAvto.Checked)
@@ -571,6 +549,7 @@ namespace Oglasnik
                 }
 
                 NaloziOglaseAvti(avti);
+                PosodobiSteviloOglasov();
             };
 
             if (RadioTovornjak.Checked)
@@ -590,6 +569,7 @@ namespace Oglasnik
                 }
 
                 NaloziOglaseTovornjaki(tovornjaki);
+                PosodobiSteviloOglasov();
             }
 
             if (radioButton4.Checked)
@@ -609,6 +589,7 @@ namespace Oglasnik
                 }
 
                 NaloziOglaseKombi(kombiji);
+                PosodobiSteviloOglasov();
             }
 
             if (RadioMotor.Checked)
@@ -628,6 +609,7 @@ namespace Oglasnik
                 }
 
                 NaloziOglaseMotor(motorji);
+                PosodobiSteviloOglasov();
             }
 
             if (RadioTraktor.Checked)
@@ -650,107 +632,100 @@ namespace Oglasnik
                 }
 
                 NaloziOglaseTraktor(traktorji);
+                PosodobiSteviloOglasov();
             }
-            ;
         }
 
         private void KupiVozilo_Click(object sender, EventArgs e)
         {
-            try
+            NakupIzMrezeDelegate nakup = PoskusiKupitiIzMreze;
+            DataGridView[] mreze =
             {
-                string cena = AvtoDataGrid.SelectedRows[0].Cells[4].Value.ToString();
-                double plačilo = double.Parse(cena);
-                denarnica.Plačaj(plačilo);
-                StanjeNaDenarnici.Text = denarnica.Stanje.ToString() + "$";
-                AvtoDataGrid.ClearSelection();
-            }
-            catch
+                AvtoDataGrid,
+                TovornjakDataGrid,
+                KombiDataGrid,
+                TraktorDataGrid,
+                MotorDataGrid
+            };
+
+            for (int i = 0; i < mreze.Length; i++)
             {
-                try
+                if (nakup(mreze[i]))
                 {
-                    string cena = TovornjakDataGrid.SelectedRows[0].Cells[4].Value.ToString();
-                    double plačilo = double.Parse(cena);
-                    denarnica.Plačaj(plačilo);
-                    StanjeNaDenarnici.Text = denarnica.Stanje.ToString() + "$";
-                    TovornjakDataGrid.ClearSelection();
-                }
-                catch
-                {
-                    try
-                    {
-                        string cena = KombiDataGrid.SelectedRows[0].Cells[4].Value.ToString();
-                        double plačilo = double.Parse(cena);
-                        denarnica.Plačaj(plačilo);
-                        StanjeNaDenarnici.Text = denarnica.Stanje.ToString() + "$";
-                        KombiDataGrid.ClearSelection();
-                    }
-                    catch
-                    {
-                        try
-                        {
-                            string cena = TraktorDataGrid.SelectedRows[0].Cells[4].Value.ToString();
-                            double plačilo = double.Parse(cena);
-                            denarnica.Plačaj(plačilo);
-                            StanjeNaDenarnici.Text = denarnica.Stanje.ToString() + "$";
-                            TraktorDataGrid.ClearSelection();
-                        }
-                        catch
-                        {
-                            try
-                            {
-                                string cena = MotorDataGrid.SelectedRows[0].Cells[4].Value.ToString();
-                                double plačilo = double.Parse(cena);
-                                denarnica.Plačaj(plačilo);
-                                StanjeNaDenarnici.Text = denarnica.Stanje.ToString() + "$";
-                                MotorDataGrid.ClearSelection();
-                            }
-                            catch
-                            {
-                                MessageBox.Show("Izberi vozilo, ki ga želiš kupiti");
-                            }
-                        }
-                    }
+                    return;
                 }
             }
+
+            MessageBox.Show("Izberi vozilo, ki ga želiš kupiti");
         }
 
-        
-        
-
-        public MotornoVozilo this[int index]
+        private bool PoskusiKupitiIzMreze(DataGridView mreza)
         {
-            get
-            {
-                if (index >= 0 && index < vsaVozila.Count)
-                {
-                    return vsaVozila[index];
-                }
-                else
-                {
-                    MessageBox.Show("Indeks je izven obsega.");
-                    return null;
-                }
-            }
-        }
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
+            if (mreza.SelectedRows.Count == 0) return false;
 
-        }
+            string cena = mreza.SelectedRows[0].Cells[4].Value?.ToString();
+            if (string.IsNullOrWhiteSpace(cena)) return false;
+            if (!double.TryParse(cena, out double placilo)) return false;
 
-        private void label13_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label7_Click(object sender, EventArgs e)
-        {
-
+            denarnica.Plačaj(placilo);
+            StanjeNaDenarnici.Text = denarnica.Stanje.ToString() + "$";
+            mreza.ClearSelection();
+            return true;
         }
 
         private void Podrobnosti_Click(object sender, EventArgs e)
         {
-            Form2 podrobnosti = new Form2(null);
-            podrobnosti.Show(); 
+            if (!PoskusiDobitiIzbranoVozilo(out MotornoVozilo vozilo))
+            {
+                MessageBox.Show("Za podrobnosti najprej izberi vozilo iz aktivnega seznama.");
+                return;
+            }
+
+            PrikazPodrobnosti?.Invoke(this, vozilo);
         }
+
+        private bool PoskusiDobitiIzbranoVozilo(out MotornoVozilo vozilo)
+        {
+            vozilo = null;
+
+            if (RadioAvto.Checked)
+                return PoskusiDobitiIzMreze(AvtoDataGrid, avti, out vozilo);
+            if (RadioTovornjak.Checked)
+                return PoskusiDobitiIzMreze(TovornjakDataGrid, tovornjaki, out vozilo);
+            if (RadioTraktor.Checked)
+                return PoskusiDobitiIzMreze(TraktorDataGrid, traktorji, out vozilo);
+            if (radioButton4.Checked)
+                return PoskusiDobitiIzMreze(KombiDataGrid, kombiji, out vozilo);
+            if (RadioMotor.Checked)
+                return PoskusiDobitiIzMreze(MotorDataGrid, motorji, out vozilo);
+
+            return false;
+        }
+
+        private bool PoskusiDobitiIzMreze<TVozilo>(DataGridView mreza, List<TVozilo> seznam, out MotornoVozilo vozilo)
+            where TVozilo : MotornoVozilo
+        {
+            vozilo = null;
+            if (mreza.SelectedRows.Count == 0) return false;
+
+            int indeksVrstice = mreza.SelectedRows[0].Index;
+            if (indeksVrstice < 0 || indeksVrstice >= seznam.Count) return false;
+
+            vozilo = seznam[indeksVrstice];
+            return true;
+        }
+
+        private void OdpriPodrobnostiVozila(object sender, MotornoVozilo vozilo)
+        {
+            Form2 podrobnosti = new Form2(vozilo);
+            podrobnosti.ShowDialog(this);
+        }
+
+        private void PosodobiSteviloOglasov()
+        {
+            int steviloOglasov = avti.Count + tovornjaki.Count + traktorji.Count + kombiji.Count + motorji.Count;
+            stoglasov.Text = "Število oglasov: " + steviloOglasov.ToString();
+        }
+
     }
 }

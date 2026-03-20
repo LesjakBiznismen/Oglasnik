@@ -22,6 +22,9 @@ namespace Oglasnik
             Priklop = priklop;
         }
 
-     
+        public override string VrniPosebnost()
+        {
+            return $"Nosilnost: {NosilnostTone} t, priklop: {Priklop}";
+        }
     }
 }

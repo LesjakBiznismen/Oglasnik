@@ -17,5 +17,9 @@ namespace Oglasnik
             ProstorninaPrtljage = prostorninaPrtljage;
         }
 
+        public override string VrniPosebnost()
+        {
+            return $"Višina: {Visina} m, prtljaga: {ProstorninaPrtljage} l";
+        }
     }
 }

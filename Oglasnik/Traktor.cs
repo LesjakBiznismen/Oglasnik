@@ -19,6 +19,9 @@ namespace Oglasnik
             ImaZlico = zlica;
         }
 
-       
+        public override string VrniPosebnost()
+        {
+            return $"Širina priklopa: {SirinaPriklopa} m, ima žlico: {ImaZlico}";
+        }
     }
 }

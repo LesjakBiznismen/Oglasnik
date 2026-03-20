@@ -97,7 +97,6 @@
             this.label1.Size = new System.Drawing.Size(485, 42);
             this.label1.TabIndex = 0;
             this.label1.Text = "OGLASI MOTORNIH VOZIL";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // AvtoDataGrid
             // 
@@ -210,7 +209,6 @@
             this.label2.Size = new System.Drawing.Size(46, 13);
             this.label2.TabIndex = 12;
             this.label2.Text = "Znamka";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // label3
             // 
@@ -405,7 +403,6 @@
             this.Oblika.Size = new System.Drawing.Size(37, 13);
             this.Oblika.TabIndex = 36;
             this.Oblika.Text = "Oblika";
-            this.Oblika.Click += new System.EventHandler(this.label13_Click);
             // 
             // Čipiran
             // 
@@ -426,7 +423,6 @@
             this.CBČipiran.Name = "CBČipiran";
             this.CBČipiran.Size = new System.Drawing.Size(100, 21);
             this.CBČipiran.TabIndex = 38;
-            this.CBČipiran.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // Priklop
             // 
@@ -552,7 +548,6 @@
             this.stoglasov.Size = new System.Drawing.Size(84, 13);
             this.stoglasov.TabIndex = 53;
             this.stoglasov.Text = "Število Oglasov:";
-            this.stoglasov.Click += new System.EventHandler(this.label7_Click);
             // 
             // Podrobnosti
             // 

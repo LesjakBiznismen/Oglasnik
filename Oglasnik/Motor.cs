@@ -15,6 +15,9 @@ namespace Oglasnik
             ProstorninaCcm = prostorninaCcm;
         }
 
-       
+        public override string VrniPosebnost()
+        {
+            return $"Prostornina motorja: {ProstorninaCcm} ccm";
+        }
     }
 }
